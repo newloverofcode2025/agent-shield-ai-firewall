@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgentShield | AI Prompt Firewall & Redactor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="glow-bg"></div>
+
+  <header class="navbar">
+    <div class="logo">
+      <span class="shield-icon">🛡️</span>
+      <span class="logo-text">Agent<strong>Shield</strong></span>
+      <span class="version-tag">v2026.1</span>
+    </div>
+    <div class="system-status">
+      <span class="status-dot"></span>
+      <span>FIREWALL ACTIVE</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero / Intro -->
+    <section class="hero-section">
+      <h2>Autonomous AI Prompt Firewall</h2>
+      <p>Inspect, detect prompt injections, redact leaked API keys, and mask PII before payloads hit LLM models.</p>
+      
+      <!-- Preset Attack Vectors -->
+      <div class="presets">
+        <span class="preset-label">Test Attack Vectors:</span>
+        <button class="preset-btn" onclick="loadPreset('injection')">⚡ Prompt Injection</button>
+        <button class="preset-btn" onclick="loadPreset('leak')">🔑 Leaked API Key</button>
+        <button class="preset-btn" onclick="loadPreset('pii')">👤 PII Data Spill</button>
+        <button class="preset-btn" onclick="loadPreset('clean')">✅ Clean Query</button>
+      </div>
+    </section>
+
+    <!-- Dashboard Core -->
+    <div class="dashboard-grid">
+      <!-- Input Area -->
+      <div class="panel input-panel">
+        <div class="panel-header">
+          <h3>RAW PROMPT PAYLOAD</h3>
+          <span id="charCount" class="badge">0 chars</span>
+        </div>
+        <textarea id="promptInput" placeholder="Enter or paste an AI prompt, system instruction, or user input to inspect..."></textarea>
+        <div class="panel-footer">
+          <button id="sanitizeBtn" class="btn btn-primary">🛡️ Sanitize Payload</button>
+          <button id="clearBtn" class="btn btn-ghost">Clear</button>
+        </div>
+      </div>
+
+      <!-- Live Analysis & Threat Meter -->
+      <div class="panel metrics-panel">
+        <div class="panel-header">
+          <h3>THREAT TELEMETRY</h3>
+          <span id="threatStatusBadge" class="threat-badge safe">SAFE</span>
+        </div>
+        
+        <div class="risk-gauge-container">
+          <div class="risk-score-display">
+            <span id="riskScore">0</span>
+            <small>/ 100 RISK</small>
+          </div>
+          <div class="gauge-bar-bg">
+            <div id="gaugeFill" class="gauge-bar-fill"></div>
+          </div>
+        </div>
+
+        <div class="threat-breakdown">
+          <div class="metric-card">
+            <span class="metric-title">Injection Vectors</span>
+            <span id="injectionCount" class="metric-val">0</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">Secrets Leaked</span>
+            <span id="secretCount" class="metric-val">0</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">PII Instances</span>
+            <span id="piiCount" class="metric-val">0</span>
+          </div>
+        </div>
+
+        <div class="threat-log">
+          <h4>Vulnerability Findings</h4>
+          <ul id="vulnerabilityList">
+            <li class="empty-log">System clear. No active threats detected.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sanitized Output -->
+    <section class="panel output-panel">
+      <div class="panel-header">
+        <h3>SANITIZED & REDACTED PAYLOAD (SAFE FOR AGENTS)</h3>
+        <button id="copyBtn" class="btn btn-sm">📋 Copy Safe Payload</button>
+      </div>
+      <pre id="sanitizedOutput"><code>Awaiting analysis...</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Developed with ❤️ by <a href="https://github.com/newloverofcode2025" target="_blank">newloverofcode2025</a> • Open-Source AI Security</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
